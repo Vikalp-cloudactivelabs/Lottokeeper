@@ -3,7 +3,9 @@ import Operator from './Operator';
 import Player from './Player';
 import { Link } from 'react-router-dom'
 import './css/LotteryGame.css';
+import {api} from "./Api";
 
+console.log(api);
 const initialPlayerState = {
   name: '',
   balance: 10000,
@@ -44,7 +46,7 @@ const initialOperatorState = {
     const fetchData = async () => {
       try {
         const playerName = player.name;
-        const playersResponse = await fetch('http://localhost:3001/players');
+        const playersResponse = await fetch(`${api}/players`);
         const playersData = await playersResponse.json();
   
         const currentPlayer = playersData.players.find((p) => p.name === playerName);
@@ -61,7 +63,7 @@ const initialOperatorState = {
   
           setPlayer(newPlayer);
   
-          await fetch('http://localhost:3001/players', {
+          await fetch(`${api}/players`, {
             method: 'POST',
             body: JSON.stringify(newPlayer),
             headers: {
@@ -70,7 +72,7 @@ const initialOperatorState = {
           });
         }
   
-        const operatorResponse = await fetch('http://localhost:3001/operator');
+        const operatorResponse = await fetch(`${api}/operator`);
         const operatorData = await operatorResponse.json();
   
         setOperator(operatorData);
@@ -92,7 +94,7 @@ const initialOperatorState = {
           console.log("ok")
           if (player?.id) {
             // Player has an ID, update the existing player
-            await fetch(`http://localhost:3001/players/${player.id}`, {
+            await fetch(`${api}/players/${player.id}`, {
               method: 'PUT',
               body: JSON.stringify(player),
               headers: {
@@ -102,7 +104,7 @@ const initialOperatorState = {
           } 
       
           // Update operator data
-          await fetch('http://localhost:3001/operator', {
+          await fetch(`${api}/operator`, {
             method: 'PUT',
             body: JSON.stringify(operator),
             headers: {
@@ -124,7 +126,7 @@ const initialOperatorState = {
  */
     const checkPlayerExists = async () => {
       try {
-        const response = await fetch(`http://localhost:3001/players?name=${player.name}`);
+        const response = await fetch(`${api}/players?name=${player.name}`);
         const playerData = await response.json();
   
         if (playerData.length > 0) {
@@ -142,7 +144,7 @@ const initialOperatorState = {
   
           setPlayer(newPlayer);
   
-          await fetch('http://localhost:3001/players', {
+          await fetch(`${api}/players`, {
             method: 'POST',
             body: JSON.stringify(newPlayer),
             headers: {

@@ -905,21 +905,62 @@
       ],
       "totalWinnings": 0,
       "id": 100872
+    },
+    {
+      "name": "rana",
+      "balance": 9000,
+      "tickets": [
+        {
+          "numbers": [
+            9,
+            12,
+            35,
+            39,
+            17
+          ],
+          "isPlayerTicket": true,
+          "id": 1
+        },
+        {
+          "numbers": [
+            20,
+            1,
+            5,
+            32,
+            2
+          ],
+          "isPlayerTicket": true,
+          "id": 2
+        }
+      ],
+      "totalWinnings": 0,
+      "id": 304428
     }
   ],
   "operator": {
-    "balance": 500,
+    "balance": 1000,
     "submittedTickets": [
       {
         "numbers": [
-          13,
-          20,
-          16,
-          33,
-          15
+          9,
+          12,
+          35,
+          39,
+          17
         ],
         "isPlayerTicket": true,
         "id": 1
+      },
+      {
+        "numbers": [
+          20,
+          1,
+          5,
+          32,
+          2
+        ],
+        "isPlayerTicket": true,
+        "id": 2
       }
     ]
   }

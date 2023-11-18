@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './css/OperatorDashboard.css'; // Import your CSS file
-
+import {api} from "./Api";
 const OperatorDashboard = () => {
   const [players, setPlayers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -11,7 +11,7 @@ const OperatorDashboard = () => {
 
   const fetchPlayersData = async () => {
     try {
-      const response = await fetch('http://localhost:3001/players');
+      const response = await fetch(`${api}/players`);
       const playersData = await response.json();
       setPlayers(playersData || []);
     } catch (error) {

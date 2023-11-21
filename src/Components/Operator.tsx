@@ -1,9 +1,21 @@
-// Operator.jsx
-
 import React from 'react';
 import './css/Operator.css'; // Import the CSS file
 
-const Operator = ({ operator, startDraw, drawnNumbers, roundResults }) => {
+// Define types for the props
+interface OperatorProps {
+  operator: {
+    balance: number;
+  };
+  startDraw: () => void;
+  drawnNumbers: number[];
+  roundResults: {
+    [key: number]: number;
+    totalPrize: number;
+    operatorProfit: number;
+  } | null;
+}
+
+const Operator: React.FC<OperatorProps> = ({ operator, startDraw, drawnNumbers, roundResults }) => {
   return (
     <div className="operator-container">
       <h2>Operator</h2>

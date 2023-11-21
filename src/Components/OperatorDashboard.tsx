@@ -1,9 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import './css/OperatorDashboard.css'; // Import your CSS file
-import {api} from "./Api";
-const OperatorDashboard = () => {
-  const [players, setPlayers] = useState([]);
-  const [loading, setLoading] = useState(true);
+import { api } from "./Api";
+
+interface Player {
+  id: number;
+  name: string;
+  balance: number;
+  totalWinnings: number;
+  tickets: Ticket[];
+}
+
+interface Ticket {
+  id: number;
+  numbers: number[];
+}
+
+const OperatorDashboard: React.FC = () => {
+  const [players, setPlayers] = useState<Player[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     fetchPlayersData();
@@ -12,7 +26,7 @@ const OperatorDashboard = () => {
   const fetchPlayersData = async () => {
     try {
       const response = await fetch(`${api}/players`);
-      const playersData = await response.json();
+      const playersData: Player[] = await response.json();
       setPlayers(playersData || []);
     } catch (error) {
       console.error('Error fetching player data:', error);
